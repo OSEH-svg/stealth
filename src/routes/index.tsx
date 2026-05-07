@@ -59,12 +59,6 @@ function MailApp() {
   }, []);
 
   useEffect(() => {
-    const t = setTimeout(() => setToast("Federation proof verified for eve*stealth.xyz"), 1200);
-    const t2 = setTimeout(() => setToast(null), 5200);
-    return () => { clearTimeout(t); clearTimeout(t2); };
-  }, []);
-
-  useEffect(() => {
     if (!visibleEmails.some((email) => email.id === selectedId)) {
       setSelectedId(visibleEmails[0]?.id ?? null);
     }
