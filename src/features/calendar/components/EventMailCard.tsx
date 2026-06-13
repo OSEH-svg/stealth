@@ -27,15 +27,31 @@ export function EventMailCard({
           >
             {event.cadence}
           </button>
-          <button className="rounded-md px-3 py-1.5 transition hover:bg-white/[0.06] hover:text-foreground">Monthly</button>
-          <button className="ml-auto rounded-md p-1.5 text-muted-foreground transition hover:bg-white/[0.06] hover:text-foreground">
+          <button
+            onClick={() => setView("monthly")}
+            className={
+              view === "monthly"
+                ? "rounded-md border border-white/[0.13] bg-white/70 px-3 py-1.5 font-medium text-background"
+                : "rounded-md px-3 py-1.5 transition hover:bg-white/[0.06] hover:text-foreground"
+            }
+          >
+            Monthly
+          </button>
+          <button
+            onClick={() => setView((current) => (current === "event" ? "monthly" : "event"))}
+            className="ml-auto rounded-md p-1.5 text-muted-foreground transition hover:bg-white/[0.06] hover:text-foreground"
+          >
             <Settings2 className="h-3.5 w-3.5" />
           </button>
         </div>
 
         <div className="mt-4 flex items-end justify-between">
-          <div className="mail-reader-title text-[32px] font-medium leading-none text-foreground/90">{event.month}</div>
-          <div className="mail-reader-title text-[32px] font-medium leading-none text-foreground/90">{event.day}</div>
+          <div className="mail-reader-title text-[32px] font-medium leading-none text-foreground/90">
+            {event.month}
+          </div>
+          <div className="mail-reader-title text-[32px] font-medium leading-none text-foreground/90">
+            {event.day}
+          </div>
         </div>
 
         <div className="mail-reader-meta mt-3.5 grid grid-cols-7 gap-1.5 text-center">
