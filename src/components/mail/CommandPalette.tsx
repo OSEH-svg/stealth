@@ -141,7 +141,7 @@ export function CommandPalette({
               )}
               {filtered.map((it) => (
                 <li key={it.label}>
-                  <button 
+                  <button
                     onClick={() => {
                       onClose();
                       switch (it.action) {
@@ -171,7 +171,7 @@ export function CommandPalette({
                   </button>
                 </li>
               ))}
-              {filtered.length === 0 && (
+              {filtered.length === 0 && messageResults.length === 0 && (
                 <li className="px-3 py-6 text-center text-xs text-muted-foreground">No matches</li>
               )}
             </ul>
