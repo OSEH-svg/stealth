@@ -153,10 +153,20 @@ export function Compose({
     }
 
     setIsSending(true);
-    
+
     // Simulate sending
-    await new Promise(resolve => setTimeout(resolve, 800));
-    
+    await new Promise((resolve) => setTimeout(resolve, 800));
+
+    onSubmit?.({
+      to: to.trim(),
+      subject: subject.trim(),
+      body,
+      attachments,
+      encrypted,
+      receipt,
+      postage,
+      scheduled,
+    });
     setIsSending(false);
     onClose();
     onShowToast?.(
