@@ -379,7 +379,8 @@ export function Topbar({
             exit={{ opacity: 0, y: -4 }}
             className="pointer-events-none absolute left-3 top-full mt-2 px-1 text-[11px] text-muted-foreground"
           >
-            Press <kbd className="rounded border border-white/10 bg-black/40 px-1">Ctrl+K</kbd> for the command palette
+            Press <kbd className="rounded border border-white/10 bg-black/40 px-1">Ctrl+K</kbd> for
+            the command palette
           </motion.div>
         )}
       </AnimatePresence>
@@ -405,7 +406,7 @@ function IconBtn({
       onClick={onClick}
       className={cn(
         "rounded-[6px] p-2 text-muted-foreground transition hover:bg-white/[0.06] hover:text-foreground",
-        active && "bg-white/[0.06] text-foreground"
+        active && "bg-white/[0.06] text-foreground",
       )}
     >
       {children}
