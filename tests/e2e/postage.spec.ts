@@ -6,7 +6,11 @@ import { test, expect, ACTOR, SENDER, MSG_ID, PAYMENT_HASH } from "./fixtures";
 test.describe("postage API", () => {
   test("quotes zero postage for an explicitly allowed sender", async ({ api }) => {
     // Allow the sender first
-    await api.putPolicy(ACTOR, { allowUnknown: true, minimumPostage: "100", requireVerified: false });
+    await api.putPolicy(ACTOR, {
+      allowUnknown: true,
+      minimumPostage: "100",
+      requireVerified: false,
+    });
     await api.setSenderRule(ACTOR, SENDER, "allow");
 
     const res = await api.quotePostage(ACTOR, SENDER);
@@ -30,7 +34,11 @@ test.describe("postage API", () => {
   });
 
   test("submits postage and then settles it", async ({ page, api }) => {
-    await api.putPolicy(ACTOR, { allowUnknown: true, minimumPostage: "100", requireVerified: false });
+    await api.putPolicy(ACTOR, {
+      allowUnknown: true,
+      minimumPostage: "100",
+      requireVerified: false,
+    });
 
     const submitRes = await api.submitPostage(MSG_ID, PAYMENT_HASH, "100");
     expect(submitRes.status()).toBe(201);
@@ -58,7 +66,13 @@ test.describe("postage API", () => {
 
     const submitRes = await page.request.post("/api/v1/postage/", {
       headers: { "Content-Type": "application/json", "x-stealth-address": SENDER },
-      data: { amount: "50", messageId: msgId, paymentHash: payHash, recipient: ACTOR, sender: SENDER },
+      data: {
+        amount: "50",
+        messageId: msgId,
+        paymentHash: payHash,
+        recipient: ACTOR,
+        sender: SENDER,
+      },
     });
     expect(submitRes.status()).toBe(201);
 
@@ -84,7 +98,11 @@ test.describe("postage API", () => {
   });
 
   test("rejects postage below mailbox minimum with 422", async ({ api }) => {
-    await api.putPolicy(ACTOR, { allowUnknown: true, minimumPostage: "1000", requireVerified: false });
+    await api.putPolicy(ACTOR, {
+      allowUnknown: true,
+      minimumPostage: "1000",
+      requireVerified: false,
+    });
 
     const msgId = "9".repeat(64);
     const payHash = "8".repeat(64);

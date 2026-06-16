@@ -24,7 +24,10 @@ export class ApiHelper {
     return { "Content-Type": "application/json", "x-stealth-address": actor };
   }
 
-  async putPolicy(actor = ACTOR, policy = { allowUnknown: true, minimumPostage: "0", requireVerified: false }) {
+  async putPolicy(
+    actor = ACTOR,
+    policy = { allowUnknown: true, minimumPostage: "0", requireVerified: false },
+  ) {
     return this.page.request.put(`/api/v1/policies/${actor}`, {
       headers: this.headers(actor),
       data: policy,

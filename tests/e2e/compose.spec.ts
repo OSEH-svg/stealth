@@ -4,10 +4,7 @@ test.describe("compose flow", () => {
   test.beforeEach(async ({ page }) => {
     // Skip onboarding by pre-setting localStorage
     await page.addInitScript(() => {
-      localStorage.setItem(
-        "stealth-preferences",
-        JSON.stringify({ onboardingCompleted: true }),
-      );
+      localStorage.setItem("stealth-preferences", JSON.stringify({ onboardingCompleted: true }));
     });
     await page.goto("/");
   });

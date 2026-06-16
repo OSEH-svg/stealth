@@ -3,10 +3,7 @@ import { test, expect } from "./fixtures";
 test.describe("search and filter", () => {
   test.beforeEach(async ({ page }) => {
     await page.addInitScript(() => {
-      localStorage.setItem(
-        "stealth-preferences",
-        JSON.stringify({ onboardingCompleted: true }),
-      );
+      localStorage.setItem("stealth-preferences", JSON.stringify({ onboardingCompleted: true }));
     });
     await page.goto("/");
   });
