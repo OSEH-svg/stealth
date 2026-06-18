@@ -67,7 +67,7 @@ export interface StatCard {
   delta?: string;
 }
 
-export type PresetId = "none" | "relay-verification" | "proof-pending" | "receipt-settlement";
+export type PresetId = "none" | "relay-verification" | "proof-pending" | "paid-sender-request" | "receipt-settlement";
 
 export interface PresetAccount {
   name: string;
