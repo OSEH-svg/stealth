@@ -116,14 +116,18 @@ export function EmailList({
       }
       if (event.key === "Escape") {
         event.preventDefault();
-        if (movePicker) { setMovePicker(null); return; }
+        if (movePicker) {
+          setMovePicker(null);
+          return;
+        }
         onSelectionChangeRef.current([]);
       }
       if (event.key === "m" || event.key === "M") {
         const focused = document.activeElement;
-        if (focused && ["INPUT", "TEXTAREA", "SELECT"].includes((focused as HTMLElement).tagName)) return;
+        if (focused && ["INPUT", "TEXTAREA", "SELECT"].includes((focused as HTMLElement).tagName))
+          return;
         event.preventDefault();
-        const ids = selectedIds.length > 0 ? selectedIds : (selectedId ? [selectedId] : []);
+        const ids = selectedIds.length > 0 ? selectedIds : selectedId ? [selectedId] : [];
         if (ids.length > 0) setMovePicker({ emailIds: ids });
       }
     };

@@ -191,9 +191,11 @@ export function Sidebar({
                     active={active === it.key}
                     collapsed={collapsed}
                     onSelect={() => onSelect(it.key)}
-                    onDrop={DROP_TARGET_FOLDERS.includes(it.key as import("./data").MailLocation)
-                      ? (ids) => onDrop?.(ids, it.key)
-                      : undefined}
+                    onDrop={
+                      DROP_TARGET_FOLDERS.includes(it.key as import("./data").MailLocation)
+                        ? (ids) => onDrop?.(ids, it.key)
+                        : undefined
+                    }
                   />
                 </li>
               ))}
@@ -329,16 +331,30 @@ function FolderButton({
     <motion.button
       whileTap={{ scale: 0.98 }}
       onClick={onSelect}
-      onDragOver={onDrop ? (e) => { e.preventDefault(); e.dataTransfer.dropEffect = "move"; setIsOver(true); } : undefined}
+      onDragOver={
+        onDrop
+          ? (e) => {
+              e.preventDefault();
+              e.dataTransfer.dropEffect = "move";
+              setIsOver(true);
+            }
+          : undefined
+      }
       onDragLeave={onDrop ? () => setIsOver(false) : undefined}
-      onDrop={onDrop ? (e) => {
-        e.preventDefault();
-        setIsOver(false);
-        try {
-          const ids: string[] = JSON.parse(e.dataTransfer.getData("text/plain"));
-          if (Array.isArray(ids) && ids.length > 0) onDrop(ids);
-        } catch { /* ignore */ }
-      } : undefined}
+      onDrop={
+        onDrop
+          ? (e) => {
+              e.preventDefault();
+              setIsOver(false);
+              try {
+                const ids: string[] = JSON.parse(e.dataTransfer.getData("text/plain"));
+                if (Array.isArray(ids) && ids.length > 0) onDrop(ids);
+              } catch {
+                /* ignore */
+              }
+            }
+          : undefined
+      }
       className={cn(
         "relative flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm transition",
         "text-muted-foreground hover:bg-white/[0.04] hover:text-foreground",

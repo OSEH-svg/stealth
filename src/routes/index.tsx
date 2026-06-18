@@ -256,7 +256,9 @@ function MailApp({ isDemoMode }: { isDemoMode?: boolean }) {
       }
     }
     if (moved > 0) {
-      showToast(`${moved === 1 ? "1 message" : `${moved} messages`} moved to ${getFolderLabel(target)}`);
+      showToast(
+        `${moved === 1 ? "1 message" : `${moved} messages`} moved to ${getFolderLabel(target)}`,
+      );
     }
   };
 

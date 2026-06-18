@@ -7,9 +7,7 @@ export type DragState = {
   sourceFolder: MailLocation;
 };
 
-export type DropResult =
-  | { ok: true }
-  | { ok: false; reason: string };
+export type DropResult = { ok: true } | { ok: false; reason: string };
 
 /** Protocol folders cannot be drag-targets (messages cannot be moved into them). */
 const PROTOCOL_FOLDERS = new Set<MailLocation>(["verified", "pending", "requests", "encrypted"]);

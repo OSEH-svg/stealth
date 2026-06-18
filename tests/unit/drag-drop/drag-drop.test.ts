@@ -1,5 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { canDragEmail, getDropRejectionReason, DROP_TARGET_FOLDERS } from "@/components/mail/useDragDrop";
+import {
+  canDragEmail,
+  getDropRejectionReason,
+  DROP_TARGET_FOLDERS,
+} from "@/components/mail/useDragDrop";
 import type { Email, MailLocation } from "@/components/mail/data";
 
 function makeEmail(folder: MailLocation, overrides: Partial<Email> = {}): Email {
