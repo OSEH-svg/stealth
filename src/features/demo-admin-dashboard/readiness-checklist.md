@@ -5,6 +5,7 @@ This document serves as the readiness and risk checklist for when the Demo Admin
 ---
 
 ## 1. Integration Checklist
+
 Before connecting the dashboard to any live/server backend, verify that the following tasks are completed:
 
 - [ ] **API Endpoint Definition**: Define the REST/GraphQL endpoints for demo dataset listing, retrieval, and publishing.
@@ -17,25 +18,29 @@ Before connecting the dashboard to any live/server backend, verify that the foll
 ---
 
 ## 2. Risk Checklist & Mitigation
+
 Ensure the following safety boundaries are maintained to protect production systems:
 
 - [ ] **Mail Flow Isolation**:
-  * *Risk*: Accidentally sending real emails or writing mock data into production mailboxes.
-  * *Mitigation*: Ensure the dashboard never calls `postage-service` or writes to production-bound mail queue directories. Keep all database modifications confined to the mock mailbox store/context.
+  - _Risk_: Accidentally sending real emails or writing mock data into production mailboxes.
+  - _Mitigation_: Ensure the dashboard never calls `postage-service` or writes to production-bound mail queue directories. Keep all database modifications confined to the mock mailbox store/context.
 - [ ] **Data Sanitization**:
-  * *Risk*: Accidental exposure of real user data, credentials, private keys, or API tokens in demo datasets.
-  * *Mitigation*: Verify all demo datasets use deterministic fake data (e.g., Stellar testnet addresses or mock public keys). Add automated pre-publish checks that reject any payload containing standard private key prefixes (e.g. `S...` seed keys).
+  - _Risk_: Accidental exposure of real user data, credentials, private keys, or API tokens in demo datasets.
+  - _Mitigation_: Verify all demo datasets use deterministic fake data (e.g., Stellar testnet addresses or mock public keys). Add automated pre-publish checks that reject any payload containing standard private key prefixes (e.g. `S...` seed keys).
 - [ ] **Network & Sandbox Restrictions**:
-  * *Risk*: The application making live external requests in sandboxed or offline environments.
-  * *Mitigation*: The publishing adapter must fall back gracefully to the in-memory/localStorage implementation when no backend endpoint is configured.
+  - _Risk_: The application making live external requests in sandboxed or offline environments.
+  - _Mitigation_: The publishing adapter must fall back gracefully to the in-memory/localStorage implementation when no backend endpoint is configured.
 
 ---
 
 ## 3. Future Integration Notes
+
 When transitioning from the in-memory mock implementation to the server-backed API:
 
 ### Swapping the Adapter
+
 You can swap the adapter dynamically based on the environment configuration:
+
 ```typescript
 import { InMemoryPublishingAdapter } from "./adapter";
 import { ServerPublishingAdapter } from "./server-adapter"; // Future implementation
@@ -46,7 +51,9 @@ export const publishingAdapter = import.meta.env.VITE_DEMO_API_URL
 ```
 
 ### Migration Runner Hook
+
 The migration runner should be invoked automatically upon loading any dataset from the backend to ensure backward compatibility with older datasets:
+
 ```typescript
 import { runMigrations } from "./migrations";
 
