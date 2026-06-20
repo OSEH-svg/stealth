@@ -3,6 +3,7 @@ import {
   Activity,
   BarChart3,
   Calendar,
+  CalendarRange,
   FileText,
   History,
   LayoutDashboard,
@@ -178,6 +179,7 @@ const SECTION_ICON: Record<DashboardSection, React.ElementType> = {
   events: Calendar,
   templates: FileText,
   campaigns: History,
+  timeline: CalendarRange,
   audit: Activity,
   analytics: PieChart,
 };
